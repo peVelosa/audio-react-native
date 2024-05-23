@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { type GestureResponderEvent } from "react-native";
 import { Bar, Progress } from "./styled";
-import { type Audio } from "@/src/hooks/use-audio";
+import { type Audio } from "@/modules/audio";
 
 type ProgressBarProps = {
   currentAudio: Audio | null;
-  handlePlay: (from?: number) => Promise<void>;
   isUpdatingPlayer: boolean;
+  handlePlay: (from?: number) => Promise<void>;
   updateVisualProgress: (e: GestureResponderEvent) => {
     progress: number;
     duration: number;

@@ -3,7 +3,7 @@ import { StatusBar } from "expo-status-bar";
 import MainWrapper from "./custom/main-wrapper";
 import MainContent from "./custom/main";
 import Navigation from "@/components/navigation";
-import AudioBottomPlayer from "@/components/audio/audio-bottom-player/audio-bottom-player";
+import AudioBottomPlayer from "@/src/components/audio/audio-bottom-player/audio-bottom-player";
 import { Tab } from "@/components/ui";
 
 const HomePage = () => {

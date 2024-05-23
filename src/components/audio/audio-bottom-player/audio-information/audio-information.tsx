@@ -3,13 +3,13 @@ import { FontAwesome } from "@expo/vector-icons";
 import { Typography } from "@/src/components/ui/typography";
 import { COLORS } from "@/src/constants";
 import { convertTimeFromMillisToSeconds } from "@/src/utils";
-import { Wrapper } from "./styled";
+import { CloseButton, Wrapper } from "./styled";
 import { type Audio } from "@/modules/audio";
 
 type AudioInformationProps = {
-  handlePlay: () => Promise<void>;
   currentAudio: Audio;
   isPlaying: boolean;
+  handlePlay: () => Promise<void>;
   handleClose: () => void;
 };
 
@@ -35,14 +35,14 @@ const AudioInformation = ({
       </Pressable>
       <Typography>{currentTime}</Typography>
       <Typography>{currentAudio.name}</Typography>
-      <Pressable onPress={handleClose}>
+      <CloseButton onPress={handleClose}>
         <FontAwesome
           name="close"
           color={COLORS["white"]}
           size={20}
           style={{ marginLeft: "auto" }}
         />
-      </Pressable>
+      </CloseButton>
     </Wrapper>
   );
 };
