@@ -6,7 +6,9 @@ export const COLORS = {
 } as const;
 
 export const SIZES = {
-  sm: 10,
-  md: 14,
-  lg: 18,
+  size10: 10,
+  size14: 14,
+  size18: 18,
+  size22: 22,
+  size26: 26,
 } as const;

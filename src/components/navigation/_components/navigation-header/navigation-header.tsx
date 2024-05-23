@@ -25,13 +25,11 @@ const NavigationHeader = () => {
                 }
               />
               <Typography
-                $color="white"
-                $size={"md"}
+                $color={active === "indice" ? "primary" : "white"}
+                $size={"size14"}
                 style={{
                   textTransform: "uppercase",
                   fontWeight: "bold",
-                  color:
-                    active === "indice" ? COLORS["primary"] : COLORS["white"],
                 }}
               >
                 índice

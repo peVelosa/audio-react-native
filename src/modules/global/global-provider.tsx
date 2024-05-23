@@ -1,5 +1,5 @@
 import { createContext, useRef } from "react";
-import { ScrollView } from "react-native";
+import { type ScrollView } from "react-native";
 import type { GlobalContext } from "./types";
 
 export const globalContext = createContext({} as GlobalContext);

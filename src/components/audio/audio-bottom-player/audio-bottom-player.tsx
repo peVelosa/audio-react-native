@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-import { Dimensions } from "react-native";
+import { Dimensions, type GestureResponderEvent } from "react-native";
 import { Wrapper } from "./styled";
-import { useAudio, type Audio } from "@/src/hooks/use-audio";
+import { useAudio, type Audio } from "@/modules/audio";
 import ProgressBar from "./progress-bar/progress-bar";
 import AudioInformation from "./audio-information/audio-infortmation";
-import { GestureResponderEvent } from "react-native";
 
 const windowWidth = Dimensions.get("window").width;
 

@@ -7,6 +7,6 @@ type TypographyProps = {
 };
 
 export const Typography = styled.Text<TypographyProps>`
-  font-size: ${({ $size }) => ($size ? SIZES[$size] : SIZES["md"])}px;
+  font-size: ${({ $size }) => ($size ? SIZES[$size] : SIZES["size14"])}px;
   color: ${({ $color }) => ($color ? COLORS[$color] : COLORS["white"])};
 `;

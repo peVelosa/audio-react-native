@@ -18,10 +18,12 @@ const AudioProvider = ({
 
   const subscribe = (props: Audio) => {
     const audio = getAudio({ name: props.name, src: props.src });
+
     if (!audio) {
       setAudios((oldAudios) => [...oldAudios, { ...props }]);
       return;
     }
+
     const updatedAudios = audios.map((audio) => {
       if (audio.src === props.src && audio.name === props.name) {
         return { ...audio, ...props };
@@ -47,6 +49,7 @@ const AudioProvider = ({
   const handlePlay = async ({ name, src, from }: HandlePlay) => {
     if (isUpdatingPlayer) return;
     const audio = getAudio({ name, src });
+
     if (!audio || !audio.player) return;
 
     await _pauseAudios();

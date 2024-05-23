@@ -1,9 +1,10 @@
 import { SafeAreaView } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import { Tab } from "@/components/ui";
-import AudioBottomPlayer from "@/components/audio/audio-bottom-player/audio-bottom-player";
-import Navigation from "@/components/navigation";
+import MainWrapper from "./custom/main-wrapper";
 import MainContent from "./custom/main";
+import Navigation from "@/components/navigation";
+import AudioBottomPlayer from "@/components/audio/audio-bottom-player/audio-bottom-player";
+import { Tab } from "@/components/ui";
 
 const HomePage = () => {
   return (
@@ -11,7 +12,9 @@ const HomePage = () => {
       <Tab.Root>
         <Navigation />
       </Tab.Root>
-      <MainContent />
+      <MainWrapper>
+        <MainContent />
+      </MainWrapper>
       <AudioBottomPlayer />
       <StatusBar />
     </SafeAreaView>

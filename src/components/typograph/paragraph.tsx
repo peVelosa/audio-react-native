@@ -1,10 +1,10 @@
-import { Typography } from "./ui/typography";
+import { Typography } from "../ui/typography";
 
 const Paragraph = ({ children }: { children: Readonly<React.ReactNode> }) => {
   return (
     <>
       <Typography
-        $size="md"
+        $size="size14"
         $color="gray"
         style={{ marginVertical: 10 }}
       >

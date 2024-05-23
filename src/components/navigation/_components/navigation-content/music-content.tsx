@@ -1,8 +1,7 @@
 import { FontAwesome } from "@expo/vector-icons";
 import { Typography } from "@/src/components/ui/typography";
-import { type Audio } from "@/src/providers/AudioProvider";
-import { useAudio } from "@/src/hooks/use-audio";
-import { useGlobal } from "@/src/hooks/use-global";
+import { type Audio, useAudio } from "@/modules/audio";
+import { useGlobal } from "@/modules/global";
 import {
   PlayerWrapper,
   PlayerPressable,

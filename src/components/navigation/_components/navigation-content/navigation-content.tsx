@@ -9,7 +9,7 @@ const NavigationContent = () => {
       <ContentWrapper>
         <Tab.Content value="indice">
           <Typography
-            $size={"sm"}
+            $size={"size14"}
             $color="white"
           >
             Indice
@@ -20,7 +20,7 @@ const NavigationContent = () => {
         </Tab.Content>
         <Tab.Content value="video">
           <Typography
-            $size={"sm"}
+            $size={"size14"}
             $color="white"
           >
             Video

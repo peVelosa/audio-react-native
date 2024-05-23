@@ -1,6 +1,6 @@
 import { Pressable, View } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
-import { useAudio } from "@/src/hooks/use-audio";
+import { useAudio } from "@/modules/audio";
 import { Typography } from "@/components/ui/typography";
 import { COLORS } from "@/src/constants";
 

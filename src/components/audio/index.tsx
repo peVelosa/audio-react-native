@@ -4,10 +4,9 @@ import { Video, AVPlaybackStatus } from "expo-av";
 import { AudioContainer } from "./styled";
 import { Typography } from "@/components/ui/typography";
 import Icon from "./icon/icon";
-import { convertTimeFromMillisToSeconds } from "@/src/utils";
-import { useAudio } from "@/src/hooks/use-audio";
 import VideoHeader from "./video-header/video-header";
-import { type Audio as TAudio } from "@/src/providers/AudioProvider";
+import { type Audio as TAudio, useAudio } from "@/modules/audio";
+import { convertTimeFromMillisToSeconds } from "@/src/utils";
 
 export type AudioProps = {
   src: string;

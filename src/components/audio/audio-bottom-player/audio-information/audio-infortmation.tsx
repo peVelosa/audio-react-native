@@ -4,7 +4,7 @@ import { Typography } from "@/src/components/ui/typography";
 import { COLORS } from "@/src/constants";
 import { convertTimeFromMillisToSeconds } from "@/src/utils";
 import { Wrapper } from "./styled";
-import { type Audio } from "@/src/hooks/use-audio";
+import { type Audio } from "@/modules/audio";
 
 type AudioInformationProps = {
   handlePlay: () => Promise<void>;

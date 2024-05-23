@@ -1,5 +1,5 @@
-import { RefObject } from "react";
-import { ScrollView } from "react-native";
+import { type RefObject } from "react";
+import { type ScrollView } from "react-native";
 
 export type GlobalContext = {
   scrollViewRef: RefObject<ScrollView> | null;
