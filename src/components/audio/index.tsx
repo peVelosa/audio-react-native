@@ -1,11 +1,13 @@
-import { useRef, useState } from "react";
-import { Pressable, View } from "react-native";
+import { useEffect, useRef, useState } from "react";
+import { View } from "react-native";
 import { Video, AVPlaybackStatus } from "expo-av";
-import { FontAwesome5 } from "@expo/vector-icons";
 import { AudioContainer } from "./styled";
 import { Typography } from "@/components/ui/typography";
-import { COLORS } from "@/src/constants";
 import Icon from "./icon/icon";
+import { convertTimeFromMillisToSeconds } from "@/src/utils";
+import { useAudio } from "@/src/hooks/use-audio";
+import VideoHeader from "./video-header/video-header";
+import { type Audio as TAudio } from "@/src/providers/AudioProvider";
 
 export type AudioProps = {
   src: string;
@@ -14,61 +16,75 @@ export type AudioProps = {
   type?: "podcast" | "book";
 };
 
-const videoSource =
-  "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" as const;
-
 const Audio = ({ src, name, description, type }: AudioProps) => {
-  const ref = useRef(null);
+  const audioRef = useRef<Video>(null);
+  const containerRef = useRef<number>(0);
+  const [error, setError] = useState(false);
   const [status, setStatus] = useState<AVPlaybackStatus>(
     {} as AVPlaybackStatus
   );
 
-  const handlePress = () => {
-    // status.isPlaying ? ref.current.pauseAsync() : ref.current.playAsync();
-  };
-  const isPlaying = status.isLoaded && status.isPlaying;
+  const { subscribe } = useAudio();
+
+  useEffect(() => {
+    const isLoaded = status.isLoaded;
+    const playerStatus: TAudio = {
+      name,
+      src,
+      type: "audio",
+      durationAsString: isLoaded
+        ? convertTimeFromMillisToSeconds(status.durationMillis ?? 0)
+        : "",
+      player: audioRef.current,
+      durationInMillis: isLoaded ? status.durationMillis ?? 0 : 0,
+      isPlaying: isLoaded && status.isPlaying,
+      isLoaded,
+      currentMillis: isLoaded ? status.positionMillis ?? 0 : 0,
+      error,
+      containerOffSetHeight: containerRef.current,
+    };
+    subscribe(playerStatus);
+  }, [
+    status.isLoaded,
+    status.isLoaded && status.positionMillis,
+    status.isLoaded && status.isPlaying,
+    error,
+  ]);
+
+  const handleStatusUpdate = (status: AVPlaybackStatus) => setStatus(status);
+
+  const handleError = () => setError(true);
 
   return (
-    <AudioContainer>
-      <Video
-        ref={ref}
-        style={{ width: 200, height: 200 }}
-        source={{
-          uri: "https://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4",
-        }}
-        useNativeControls
-        volume={1}
-        onPlaybackStatusUpdate={(status) => setStatus(status)}
-      />
-      <Icon type={type ?? "podcast"} />
-      <View
-        style={{
-          flexDirection: "row",
-          gap: 10,
-          alignItems: "center",
-        }}
-      >
-        <Pressable
-          onPress={handlePress}
-          hitSlop={5}
-        >
-          <FontAwesome5
-            name={isPlaying ? "pause" : "play"}
-            size={20}
-            color={COLORS["green"]}
-          />
-        </Pressable>
-        <View>
-          <Typography $color="gray">{name}</Typography>
-          <Typography $color="gray">20:00</Typography>
-        </View>
-      </View>
-      {description && (
-        <View>
-          <Typography $color="gray">{description}</Typography>
-        </View>
-      )}
-    </AudioContainer>
+    <View
+      onLayout={(params) => {
+        containerRef.current = params.nativeEvent.layout.y;
+      }}
+    >
+      <AudioContainer style={{ opacity: status.isLoaded ? 1 : 0.75 }}>
+        <Video
+          ref={audioRef}
+          style={{ width: 0, height: 0 }}
+          source={{ uri: src }}
+          useNativeControls
+          volume={1}
+          progressUpdateIntervalMillis={1000}
+          onPlaybackStatusUpdate={handleStatusUpdate}
+          onLoad={handleStatusUpdate}
+          onError={handleError}
+        />
+        <Icon type={type ?? "podcast"} />
+        <VideoHeader
+          name={name}
+          src={src}
+        />
+        {description && (
+          <View>
+            <Typography $color="gray">{description}</Typography>
+          </View>
+        )}
+      </AudioContainer>
+    </View>
   );
 };
 

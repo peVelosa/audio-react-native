@@ -1,9 +1,12 @@
 import HomePage from "@/src/index";
+import Providers from "./src/providers";
 
 export default function App() {
   return (
     <>
-      <HomePage />
+      <Providers>
+        <HomePage />
+      </Providers>
     </>
   );
 }

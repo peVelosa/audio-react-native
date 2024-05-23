@@ -1,11 +1,14 @@
 import { ScrollView, View } from "react-native";
 import Paragraph from "@/components/paragraph";
 import Audio from "@/components/audio";
+import { useGlobal } from "@/src/hooks/use-global";
 
 const MainContent = () => {
+  const { scrollViewRef } = useGlobal();
+
   return (
     <>
-      <ScrollView>
+      <ScrollView ref={scrollViewRef}>
         <View style={{ padding: 20 }}>
           <Paragraph>
             Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -21,13 +24,13 @@ const MainContent = () => {
           <Audio
             name="Eu sou o áudio 1"
             description="minha descrição é do áudio 1"
-            src="https://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4"
+            src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
             type="podcast"
           />
           <Audio
             name="Eu sou o áudio 2"
             description="minha descrição é do áudio 2"
-            src="https://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4"
+            src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
             type="book"
           />
           <Paragraph>

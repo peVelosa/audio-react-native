@@ -1,11 +1,12 @@
-import { View } from "react-native";
 import { Typography } from "@/src/components/ui/typography";
 import { Tab } from "@/src/components/ui";
+import MusicContent from "./music-content";
+import { ContentWrapper } from "./styled";
 
 const NavigationContent = () => {
   return (
     <>
-      <View>
+      <ContentWrapper>
         <Tab.Content value="indice">
           <Typography
             $size={"sm"}
@@ -15,12 +16,7 @@ const NavigationContent = () => {
           </Typography>
         </Tab.Content>
         <Tab.Content value="music">
-          <Typography
-            $size={"sm"}
-            $color="white"
-          >
-            Musica
-          </Typography>
+          <MusicContent />
         </Tab.Content>
         <Tab.Content value="video">
           <Typography
@@ -30,7 +26,7 @@ const NavigationContent = () => {
             Video
           </Typography>
         </Tab.Content>
-      </View>
+      </ContentWrapper>
     </>
   );
 };

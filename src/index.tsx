@@ -1,6 +1,7 @@
-import { SafeAreaView, ScrollView } from "react-native";
+import { SafeAreaView } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { Tab } from "@/components/ui";
+import AudioBottomPlayer from "@/components/audio/audio-bottom-player/audio-bottom-player";
 import Navigation from "@/components/navigation";
 import MainContent from "./custom/main";
 
@@ -11,6 +12,7 @@ const HomePage = () => {
         <Navigation />
       </Tab.Root>
       <MainContent />
+      <AudioBottomPlayer />
       <StatusBar />
     </SafeAreaView>
   );
