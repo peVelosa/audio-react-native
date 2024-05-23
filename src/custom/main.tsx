@@ -20,13 +20,13 @@ const MainContent = () => {
       <Audio
         name="Eu sou o áudio 1"
         description="minha descrição é do áudio 1"
-        src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+        src="https://sample-videos.com/video321/mp4/240/big_buck_bunny_240p_30mb.mp4"
         type="podcast"
       />
       <Audio
         name="Eu sou o áudio 2"
         description="minha descrição é do áudio 2"
-        src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+        src="https://sample-videos.com/video321/mp4/720/big_buck_bunny_720p_20mb.mp4"
         type="book"
       />
       <Paragraph>
