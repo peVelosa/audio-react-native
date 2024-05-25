@@ -9,23 +9,53 @@ import { type Audio as TAudio, useAudio } from "@/modules/audio";
 import { convertTimeFromMillisToSeconds } from "@/src/utils";
 
 export type AudioProps = {
-  src: string;
+  source: string;
   name: string;
   description?: string;
   type?: "podcast" | "book";
 };
 
-const Audio = ({ src, name, description, type }: AudioProps) => {
+const VimeoRegex = /vimeo.com/;
+
+const Audio = ({ source, name, description, type }: AudioProps) => {
   const audioRef = useRef<Video>(null);
   const containerRef = useRef<number>(0);
   const [error, setError] = useState(false);
+  const [isVimeoLoaded, setIsVimeoLoaded] = useState(false);
+  const [src, setSrc] = useState(source);
   const [status, setStatus] = useState<AVPlaybackStatus>(
     {} as AVPlaybackStatus
   );
 
   const { subscribe } = useAudio();
 
+  const fetchVimeoData = async () => {
+    try {
+      const res = await fetch(source + "/config", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ec954eee04c56231a947a931f6c94555`,
+        },
+        method: "GET",
+      });
+      const data = await res.json();
+      setSrc(
+        data.request.files.hls.cdns[data.request.files.hls.default_cdn].url
+      );
+    } catch (e) {
+      console.log(e);
+    }
+    setIsVimeoLoaded(true);
+  };
+
   useEffect(() => {
+    if (!VimeoRegex.test(source)) return;
+
+    fetchVimeoData();
+  }, []);
+
+  useEffect(() => {
+    if (VimeoRegex.test(source) && !isVimeoLoaded) return;
     const isLoaded = status.isLoaded;
     const playerStatus: TAudio = {
       name,
@@ -48,6 +78,7 @@ const Audio = ({ src, name, description, type }: AudioProps) => {
     status.isLoaded && status.positionMillis,
     status.isLoaded && status.isPlaying,
     error,
+    isVimeoLoaded,
   ]);
 
   const handleStatusUpdate = (status: AVPlaybackStatus) => setStatus(status);
