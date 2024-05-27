@@ -1,12 +1,5 @@
-import HomePage from "@/src/index";
-import Providers from "./src/providers";
+import Home from "@/src/app/page";
 
 export default function App() {
-  return (
-    <>
-      <Providers>
-        <HomePage />
-      </Providers>
-    </>
-  );
+  return <Home />;
 }

@@ -5,9 +5,15 @@
     "baseUrl": ".",
     "paths": {
       "@/src/*": ["src/*"],
-      "@/components/*": ["src/components/*"],
       "@/modules/*": ["src/modules/*"],
-      "@/constants": ["src/constants/index.ts"]
+      "@/constants": ["src/constants/index.ts"],
+      "@/templates/*": ["src/templates/*"],
+      "@/contexts/*": ["src/contexts/*"],
+      "@/hooks/*": ["src/hooks/*"],
+      "@/atoms/*": ["src/components/atoms/*"],
+      "@/molecules/*": ["src/components/molecules/*"],
+      "@/organisms/*": ["src/components/organisms/*"],
+      "@/styles/*": ["src/styles/*"]
     }
   }
 }
